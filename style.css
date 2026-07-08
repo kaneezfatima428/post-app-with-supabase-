@@ -1,0 +1,147 @@
+/* :root {
+    --primary-color: #6C8196;
+    --accent-bg: #FFFFE3;
+    --border-muted: #CBCBCB;
+    --dark-text: #5C5C5C;
+    --body-bg: #f4f6f8;
+    --card-bg: #ffffff;
+    --text-main: var(--dark-text);
+} */
+/* 
+body.dark-mode {
+    --body-bg: #1e252b;
+    --card-bg: #2a343d;
+    --text-main: #f5f6f7;
+    --border-muted: #44525f;
+} */
+
+/* body {
+
+    background-color: var(--body-bg);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.app-logo {
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-muted) !important;
+    border-radius: 16px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.theme-toggle-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1050;
+}
+
+.form-control {
+    background-color: var(--body-bg);
+    color: var(--text-main);
+    border: 1px solid var(--border-muted);
+}
+.form-control:focus {
+    background-color: var(--body-bg);
+    color: var(--text-main);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(108, 129, 150, 0.25);
+} */
+
+
+:root {
+    --primary-color: #6C8196;
+    --border-muted: #CBCBCB;
+    --dark-text: #5C5C5C;
+    --body-bg: #f4f6f8;
+    --card-bg: #ffffff;
+    --text-main: var(--dark-text);
+}
+
+body.dark-mode {
+    --body-bg: #1e252b;
+    --card-bg: #2a343d;
+    --text-main: #ffffff !important; /* Forces all standard text elements to white */
+    --border-muted: #44525f;
+}
+
+body {
+    background-color: var(--body-bg);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dynamic handling for headings/labels in dark mode */
+body.dark-mode h3, body.dark-mode h5, body.dark-mode label, body.dark-mode p {
+    color: #ffffff !important;
+}
+
+.app-logo {
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-muted) !important;
+    border-radius: 16px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.theme-toggle-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1050;
+}
+
+.form-control {
+    background-color: var(--body-bg);
+    color: var(--text-main);
+    border: 1px solid var(--border-muted);
+}

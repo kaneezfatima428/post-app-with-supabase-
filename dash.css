@@ -1,0 +1,222 @@
+/* :root {
+    --primary-color: #6C8196;
+    --accent-bg: #FFFFE3;
+    --border-muted: #CBCBCB;
+    --dark-text: #5C5C5C;
+    --body-bg: #f4f6f8;
+    --card-bg: #ffffff;
+    --text-main: var(--dark-text);
+    --nav-bg: var(--primary-color);
+}
+
+body.dark-mode {
+    --body-bg: #1e252b;
+    --card-bg: #2a343d;
+    --text-main: #f5f6f7;
+    --border-muted: #44525f;
+    --nav-bg: #171d22;
+}
+
+body {
+    background-color: var(--body-bg);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.app-logo-sm {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post-creator-card, .post-display-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-muted) !important;
+    border-radius: 16px;
+}
+
+.navbar {
+    background-color: var(--nav-bg) !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.theme-toggle-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1050;
+}
+
+.post-visual-box {
+    border-radius: 12px;
+    padding: 20px;
+    background-size: cover;
+    background-position: center;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid var(--border-muted);
+}
+
+.form-control, .form-select {
+    background-color: var(--body-bg);
+    color: var(--text-main);
+    border: 1px solid var(--border-muted);
+}
+.form-control:focus, .form-select:focus {
+    background-color: var(--body-bg);
+    color: var(--text-main);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(108, 129, 150, 0.25);
+} */
+
+
+:root {
+    --primary-color: #6C8196;
+    --border-muted: #CBCBCB;
+    --dark-text: #5C5C5C;
+    --body-bg: #f4f6f8;
+    --card-bg: #ffffff;
+    --text-main: var(--dark-text);
+    --nav-bg: var(--primary-color);
+}
+
+body.dark-mode {
+    --body-bg: #1e252b;
+    --card-bg: #2a343d;
+    --text-main: #ffffff !important;
+    --border-muted: #44525f;
+    --nav-bg: #171d22;
+}
+
+body {
+    background-color: var(--body-bg);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode h5, body.dark-mode h6, body.dark-mode label, body.dark-mode #feedHeadingLabel {
+    color: #ffffff !important;
+}
+
+.app-logo-sm {
+    width: 32px;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar {
+    background-color: var(--nav-bg) !important;
+}
+.navbar .navbar-brand {
+    color: #ffffff !important;
+}
+
+/* Layout Engine Rules: Fixed Side Column on Desktop screens */
+@media (min-width: 768px) {
+    .sticky-sidebar {
+        position: sticky;
+        top: 90px;
+        z-index: 100;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+    }
+}
+
+.post-creator-card, .post-display-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-muted) !important;
+    border-radius: 16px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.theme-toggle-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1050;
+}
+
+/* Image Matrix Choice Gallery Styling blocks */
+.gallery-grid-picker {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-top: 5px;
+}
+.gallery-option-thumb {
+    height: 45px;
+    border-radius: 6px;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+.gallery-option-thumb:hover, .gallery-option-thumb.active {
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+/* Visual Canvas Layout Display card */
+.post-visual-box {
+    border-radius: 12px;
+    padding: 24px;
+    background-size: cover;
+    background-position: center;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid var(--border-muted);
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.05); /* Soft blend shader tint layer */
+}
+
+.form-control, .form-select {
+    background-color: var(--body-bg);
+    color: var(--text-main);
+    border: 1px solid var(--border-muted);
+}
+.form-control:focus, .form-select:focus {
+    background-color: var(--body-bg);
+    border-color: var(--primary-color);
+}
