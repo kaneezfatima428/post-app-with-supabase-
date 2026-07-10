@@ -1,3 +1,4 @@
+// 
 var supabase = window.supabase.createClient('https://dnlqybhhohivumfgnxdz.supabase.co', 'sb_publishable_osMm75NYS71XczWSpZIYOQ_MCrF_1h2');
 
 var themeToggle = document.getElementById('themeToggle');
@@ -22,8 +23,22 @@ var posts = [];
 var selectedGalleryImage = galleryImagesList[0];
 var currentUserEmail = "Anonymous User";
 var userid;
-var currentuserid;
 
+
+var themeToggle = document.getElementById('themeToggle');
+var themeIcon = document.getElementById('themeIcon');
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', function() {
+        if (document.body.classList.contains('light-mode')) {
+            document.body.classList.replace('light-mode', 'dark-mode');
+            themeIcon.className = 'bi bi-sun-fill';
+        } else {
+            document.body.classList.replace('dark-mode', 'light-mode');
+            themeIcon.className = 'bi bi-moon-fill';
+        }
+    });
+}
 var searchInput = document.getElementById('feedSearchInput');
 
 searchInput.addEventListener('input', async function (e) {
@@ -48,7 +63,10 @@ searchInput.addEventListener('input', async function (e) {
     } catch (error) {
         console.error("Supabase search me error aya:", error);
     }
-});
+
+}
+   
+);
 
 async function updateNavbarProfile() {
     try {
@@ -61,9 +79,7 @@ async function updateNavbarProfile() {
 
         if (session && session.user && session.user.email) {
             const userEmail = session.user.email;
-
             currentUserEmail = userEmail;
-
             avatarElem.textContent = userEmail.charAt(0).toUpperCase();
 
             if (emailElem) {
@@ -71,7 +87,6 @@ async function updateNavbarProfile() {
             }
         } else {
             avatarElem.innerHTML = `<i class="bi bi-person-fill"></i>`;
-
             if (emailElem) {
                 emailElem.textContent = "Anonymous User / Guest";
             }
@@ -82,18 +97,6 @@ async function updateNavbarProfile() {
 }
 
 updateNavbarProfile();
-
-
-var logoutBtn = document.getElementById('logoutBtn');
-
-if (logoutBtn) {
-    logoutBtn.addEventListener('click', async () => {
-        const { error } = await supabase.auth.signOut();
-        if (!error) {
-            window.location.reload();
-        }
-    });
-}
 
 async function checkUserSession() {
     try {
@@ -112,7 +115,6 @@ async function checkUserSession() {
         if (user) {
             currentUserEmail = user.email;
             userid = user.id;
-            console.log(userid);
 
             var userBadge = document.getElementById('userBadge');
             if (userBadge) {
@@ -124,15 +126,17 @@ async function checkUserSession() {
     }
 }
 
-logoutBtn.addEventListener('click', async function () {
-    try {
-        var { error } = await supabase.auth.signOut();
-        if (error) throw error;
-        window.location.href = 'index.html';
-    } catch (error) {
-        console.error("Signout processing routine interrupt:", error.message);
-    }
-});
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', async function () {
+        try {
+            var { error } = await supabase.auth.signOut();
+            if (error) throw error;
+            window.location.href = 'index.html';
+        } catch (error) {
+            console.error("Signout processing routine interrupt:", error.message);
+        }
+    });
+}
 
 async function renderFeed(customDataList) {
     postsFeed.innerHTML = '';
@@ -164,7 +168,6 @@ async function renderFeed(customDataList) {
         var totalFeedItemsCount = posts.length;
 
         posts.forEach(function (post, index) {
-
             var postOrdinalSequenceNumber = totalFeedItemsCount - index;
             var backgroundRenderStyleCode = "";
             var btns = " ";
@@ -175,6 +178,7 @@ async function renderFeed(customDataList) {
                 backgroundRenderStyleCode = "background-image: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.25)), url('" + (post.bg_img || selectedGalleryImage) + "'); background-size: cover; background-position: center;";
             }
 
+            // [SECURITY GUARD]: Edit/Delete button sirf apni post par dikhenge
             if (userid && post.user_id === userid) {
                 btns = `
                     <button class="btn btn-link btn-sm text-muted p-0" type="button" data-bs-toggle="dropdown">
@@ -187,7 +191,7 @@ async function renderFeed(customDataList) {
                 `;
             }
 
-            var postCreatorEmailId = post.user_email || currentUserEmail;
+            var postCreatorEmailId = post.user_email || "Anonymous";
 
             var card = document.createElement('div');
             card.className = 'card post-display-card p-3 shadow-sm animation-fade-in mb-3';
@@ -235,32 +239,7 @@ async function renderFeed(customDataList) {
     }
 }
 
-window.searchPosts = async function () {
-    var searchInput = document.getElementById("searchInput");
-    if (!searchInput) return;
-
-    var queryValue = searchInput.value.trim();
-
-    if (queryValue === "") {
-        renderFeed(null);
-        return;
-    }
-
-    try {
-        var { data, error } = await supabase
-            .from('post app table')
-            .select('*')
-            .or(`title.ilike.%${queryValue}%,description.ilike.%${queryValue}%`)
-            .order('id', { ascending: false });
-
-        if (error) throw error;
-        renderFeed(data);
-
-    } catch (error) {
-        console.error("Data tracking search operation intercept fault logging:", error.message);
-    }
-};
-
+// FORM SUBMIT (INSERT + UPDATE + STORAGE BUCKET)
 postForm.addEventListener('submit', async function (e) {
     e.preventDefault();
 
@@ -268,14 +247,10 @@ postForm.addEventListener('submit', async function (e) {
     var title = document.getElementById('postTitle').value.trim();
     var description = document.getElementById('postDescription').value.trim();
     var textColor = document.getElementById('textColor').value;
+    var imageFileField = document.getElementById('background-image'); 
+    let imageFile = imageFileField ? imageFileField.files[0] : null;
 
     var backgroundSetupValue = "";
-
-    if (canvasMode.value === 'solid') {
-        backgroundSetupValue = document.getElementById('solidColorField').value;
-    } else {
-        backgroundSetupValue = selectedGalleryImage;
-    }
 
     if (!title || !description) {
         Swal.fire({
@@ -287,7 +262,39 @@ postForm.addEventListener('submit', async function (e) {
     }
 
     try {
+        // [SUPABASE BUCKET ENGINE]: Agar file select ki hai to upload hogi
+        if (imageFile) {
+            let fileName = `${Date.now()}-${imageFile.name}`;
+            const { error: uploadError } = await supabase
+                .storage
+                .from('post-images')
+                .upload(fileName, imageFile, {
+                    cacheControl: '3600',
+                    upsert: false
+                });
+
+            if (uploadError) {
+                Swal.fire('Storage Error', 'Image upload failed!', 'error');
+                console.error(uploadError);
+                return;
+            }
+
+            const { data: imageData } = supabase
+                .storage
+                .from('post-images')
+                .getPublicUrl(fileName);
+
+            backgroundSetupValue = imageData.publicUrl;
+        } else {
+            if (canvasMode.value === 'solid') {
+                backgroundSetupValue = document.getElementById('solidColorField').value;
+            } else {
+                backgroundSetupValue = selectedGalleryImage;
+            }
+        }
+
         if (editId) {
+            // Secure Update: Check ki post isi logged-in user ki ho
             var { error } = await supabase
                 .from('post app table')
                 .update({
@@ -296,7 +303,8 @@ postForm.addEventListener('submit', async function (e) {
                     bg_img: backgroundSetupValue,
                     textColor: textColor
                 })
-                .eq('id', Number(editId));
+                .eq('id', Number(editId))
+                .eq('user_id', userid); // Guard lock
 
             if (error) throw error;
 
@@ -325,7 +333,8 @@ postForm.addEventListener('submit', async function (e) {
         renderFeed(null);
 
     } catch (error) {
-        console.log(error);
+        Swal.fire('Database Error', error.message, 'error');
+        console.error(error);
     }
 });
 
@@ -338,6 +347,12 @@ window.editPost = function (id) {
 
     var selectedItemDataObj = posts[matchTargetIndex];
 
+    // Secure Verification Check before UI population
+    if (selectedItemDataObj.user_id !== userid) {
+        Swal.fire('Unauthorized', "You are not allowed to edit this post!", 'error');
+        return;
+    }
+
     document.getElementById('editPostId').value = selectedItemDataObj.id;
     document.getElementById('postTitle').value = selectedItemDataObj.title;
     document.getElementById('postDescription').value = selectedItemDataObj.description;
@@ -346,25 +361,17 @@ window.editPost = function (id) {
     if (selectedItemDataObj.bg_img && selectedItemDataObj.bg_img.startsWith('#')) {
         canvasMode.value = 'solid';
         canvasMode.dispatchEvent(new Event('change'));
-
         var colorInput = document.getElementById('solidColorField');
         if (colorInput) colorInput.value = selectedItemDataObj.bg_img;
-
     } else {
         canvasMode.value = 'gallery';
         canvasMode.dispatchEvent(new Event('change'));
-
         selectedGalleryImage = selectedItemDataObj.bg_img;
 
         var targets = document.querySelectorAll('.gallery-option-thumb');
-
         targets.forEach(function (node) {
             var stringSlice = node.style.backgroundImage.slice(5, -2);
-
-            if (
-                stringSlice.indexOf(selectedGalleryImage) !== -1 ||
-                selectedGalleryImage.indexOf(stringSlice) !== -1
-            ) {
+            if (stringSlice.indexOf(selectedGalleryImage) !== -1 || selectedGalleryImage.indexOf(stringSlice) !== -1) {
                 node.classList.add('active');
             } else {
                 node.classList.remove('active');
@@ -378,13 +385,16 @@ window.editPost = function (id) {
     posts.splice(matchTargetIndex, 1);
     renderFeed(posts);
 
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 window.deletePost = function (id) {
+    var targetedPost = posts.find(p => p.id === Number(id));
+    if (targetedPost && targetedPost.user_id !== userid) {
+        Swal.fire('Unauthorized', "You cannot discard someone else's post!", 'error');
+        return;
+    }
+
     Swal.fire({
         title: 'Discard entry?',
         text: "This item will be cleaned from structural cloud production storage database completely.",
@@ -394,34 +404,22 @@ window.deletePost = function (id) {
         cancelButtonColor: '#5C5C5C',
         confirmButtonText: 'Yes, remove'
     }).then(async function (result) {
-
         if (result.isConfirmed) {
             try {
                 var { error } = await supabase
                     .from('post app table')
                     .delete()
-                    .eq('id', Number(id));
+                    .eq('id', Number(id))
+                    .eq('user_id', userid); // Security check node
 
                 if (error) throw error;
-
                 renderFeed(null);
-
             } catch (error) {
                 console.error("Purging structural target stack trace error tracking:", error.message);
             }
         }
     });
 };
-
-themeToggle.addEventListener('click', function () {
-    if (document.body.classList.contains('light-mode')) {
-        document.body.classList.replace('light-mode', 'dark-mode');
-        themeIcon.className = 'bi bi-sun-fill';
-    } else {
-        document.body.classList.replace('dark-mode', 'light-mode');
-        themeIcon.className = 'bi bi-moon-fill';
-    }
-});
 
 canvasMode.addEventListener('change', function () {
     if (canvasMode.value === 'solid') {
@@ -431,13 +429,10 @@ canvasMode.addEventListener('change', function () {
         `;
     } else {
         var dynamicThumbHTML = '<label class="form-label small text-muted mb-1 fw-semibold">Choose Gallery Theme Background</label><div class="gallery-grid-picker">';
-
         galleryImagesList.forEach(function (imgUrl, idx) {
             var activeStateClass = (idx === 0) ? 'active' : '';
-
             dynamicThumbHTML += '<div class="gallery-option-thumb ' + activeStateClass + '" style="background-image:url(\'' + imgUrl + '\')" onclick="selectThumbTarget(this, \'' + imgUrl + '\')"></div>';
         });
-
         dynamicThumbHTML += '</div>';
         bgControlPanel.innerHTML = dynamicThumbHTML;
         selectedGalleryImage = galleryImagesList[0];
@@ -446,11 +441,9 @@ canvasMode.addEventListener('change', function () {
 
 window.selectThumbTarget = function (elementNode, imgPath) {
     var siblingThumbs = document.querySelectorAll('.gallery-option-thumb');
-
     siblingThumbs.forEach(function (node) {
         node.classList.remove('active');
     });
-
     elementNode.classList.add('active');
     selectedGalleryImage = imgPath;
 };

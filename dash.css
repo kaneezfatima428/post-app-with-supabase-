@@ -204,12 +204,32 @@ body.dark-mode h5, body.dark-mode h6, body.dark-mode label, body.dark-mode #feed
     background-size: cover;
     background-position: center;
     min-height: 180px;
+   .post-visual-box {
+    /* ... baqi sab same ... */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Top par le jayega */
+    align-items: flex-start;     /* Left par le jayega */
+    /* ... baqi sab same ... */
+}
     border: 1px solid var(--border-muted);
     box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.05); /* Soft blend shader tint layer */
 }
+ 
+/* .post-visual-box {
+    border-radius: 12px;
+    padding: 24px;
+    background-size: cover;
+    background-position: center;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center rakhega */
+    /* align-items: flex-start; /* Content ko horizontally left par rakhega */
+    /* text-align: left;        /* Text ko left align karega */
+    /* border: 1px solid var(--border-muted);
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.05);
+}*/ */ */ */
 
 .form-control, .form-select {
     background-color: var(--body-bg);
@@ -219,4 +239,29 @@ body.dark-mode h5, body.dark-mode h6, body.dark-mode label, body.dark-mode #feed
 .form-control:focus, .form-select:focus {
     background-color: var(--body-bg);
     border-color: var(--primary-color);
+}
+
+:root {
+    --primary-color: #6C8196;
+    --bg-color: #ffffff;
+    --text-color: #212529;
+    --card-bg: #ffffff;
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #f8f9fa;
+    --card-bg: #1e1e1e;
+}
+
+body {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Jo cards aapke dashboard par hain unpar bhi var use karein */
+.post-creator-card, .card {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
 }

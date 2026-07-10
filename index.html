@@ -1,146 +1,139 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connectify | Welcome</title>
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/1377/1377213.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="light-mode">
 
-    <div class="theme-toggle-btn" id="themeToggle">
-        <i class="bi bi-moon-fill" id="themeIcon"></i>
-    </div>
-
-    <section class="container-fluid min-vh-100 d-flex align-items-center justify-content-center">
-        <div class="row w-100 justify-content-center">
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card auth-card p-4 shadow-lg border-0">
-                    <div class="text-center mb-4">
-                        <div class="app-logo mx-auto mb-2">
-                            <i class="bi bi-share-fill text-white fs-3"></i>
-                        </div>
-                        <h3 class="fw-bold app-brand-name">Connectify</h3>
-                        <p class="text-muted small" id="authSubtitle">Log in to see what others are sharing</p>
-                    </div>
-
-                    <form id="loginForm">
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Email Address</label>
-                            <input type="email" id="loginEmail" class="form-control" placeholder="name@example.com" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Password</label>
-                            <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100 mb-3 fw-semibold">Log In</button>
-                        <p class="text-center small text-muted">
-                            Don't have an account? <a href="#" id="showSignup" class="text-decoration-none fw-bold">Sign Up</a>
-                        </p>
-                    </form>
-
-                    <form id="signupForm" class="d-none">
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Full Name</label>
-                            <input type="text" id="signupName" class="form-control" placeholder="John Doe" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Email Address</label>
-                            <input type="email" id="signupEmail" class="form-control" placeholder="name@example.com" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Password</label>
-                            <input type="password" id="signupPassword" class="form-control" placeholder="Create strong password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100 mb-3 fw-semibold">Sign Up & Log In</button>
-                        <p class="text-center small text-muted">
-                            Already have an account? <a href="#" id="showLogin" class="text-decoration-none fw-bold">Log In</a>
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="app.js"></script>
-</body>
-</html> -->
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connectify | Welcome</title>
-    <!-- Post App Custom Favicon (Hated LinkedIn Logo) -->
-    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3959/3959542.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="light-mode">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Connectify | Welcome</title>
+        <link rel="icon" type="image/png"
+            href="https://cdn-icons-png.flaticon.com/512/3959/3959542.png">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="light-mode">
 
-    <div class="theme-toggle-btn" id="themeToggle">
-        <i class="bi bi-moon-fill" id="themeIcon"></i>
-    </div>
+        <div class="theme-toggle-btn" id="themeToggle">
+            <i class="bi bi-moon-fill" id="themeIcon"></i>
+        </div>
 
-    <section class="container-fluid min-vh-100 d-flex align-items-center justify-content-center">
-        <div class="row w-100 justify-content-center">
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="card auth-card p-4 shadow-lg border-0">
-                    <div class="text-center mb-4">
-                        <div class="app-logo mx-auto mb-2">
-                            <i class="bi bi-postcard-heart text-white fs-3"></i>
+        <section
+            class="container-fluid min-vh-100 d-flex align-items-center justify-content-center">
+            <div class="row w-100 justify-content-center">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card auth-card p-4 shadow-lg border-0">
+                        <div class="text-center mb-4">
+                            <div class="app-logo mx-auto mb-2">
+                                <i
+                                    class="bi bi-postcard-heart text-white fs-3"></i>
+                            </div>
+                            <h3 class="fw-bold app-brand-name">Connectify</h3>
+                            <p class="text-muted small" id="authSubtitle">Log in
+                                to control your post feed</p>
                         </div>
-                        <h3 class="fw-bold app-brand-name">Connectify</h3>
-                        <p class="text-muted small" id="authSubtitle">Log in to control your post feed</p>
+
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label
+                                    class="form-label text-secondary small fw-semibold">Email
+                                    Address</label>
+                                <input type="email" id="loginEmail"
+                                    class="form-control"
+                                    placeholder="name@example.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label
+                                    class="form-label text-secondary small fw-semibold">Password</label>
+                                <input type="password" id="loginPassword"
+                                    class="form-control" placeholder="••••••••"
+                                    required>
+                            </div>
+                            <button type="submit"
+                                class="btn btn-primary w-100 mb-3 fw-semibold">Log
+                                In</button>
+
+                            <div class="d-flex align-items-center my-3">
+                                <hr class="flex-grow-1 text-muted my-0">
+                                <span
+                                    class="mx-2 small text-muted text-uppercase fw-semibold"
+                                    style="font-size: 11px;">Or</span>
+                                <hr class="flex-grow-1 text-muted my-0">
+                            </div>
+                            <button type="button" onclick="continuewithgoogle()"
+                                class="btn btn-custom-google w-100 mb-3 fw-semibold d-flex align-items-center justify-content-center gap-2 googleLoginBtn">
+                                <i class="bi bi-google"></i> Continue with
+                                Google
+                            </button>
+
+                            <p class="text-center small text-muted">
+                                Don't have an account? <a href="#"
+                                    id="showSignup"
+                                    class="text-decoration-none fw-bold">Sign
+                                    Up</a>
+                            </p>
+                        </form>
+
+                        <form id="signupForm" class="d-none">
+                            <div class="mb-3">
+                                <label
+                                    class="form-label text-secondary small fw-semibold">Full
+                                    Name</label>
+                                <input type="text" id="signupName"
+                                    class="form-control" placeholder="John Doe"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label
+                                    class="form-label text-secondary small fw-semibold">Email
+                                    Address</label>
+                                <input type="email" id="signupEmail"
+                                    class="form-control"
+                                    placeholder="name@example.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label
+                                    class="form-label text-secondary small fw-semibold">Password</label>
+                                <input type="password" id="signupPassword"
+                                    class="form-control"
+                                    placeholder="Create strong password"
+                                    required>
+                            </div>
+                            <button type="submit"
+                                class="btn btn-primary w-100 mb-3 fw-semibold">Sign
+                                Up & Log In</button>
+
+                            <div class="d-flex align-items-center my-3">
+                                <hr class="flex-grow-1 text-muted my-0">
+                                <span
+                                    class="mx-2 small text-muted text-uppercase fw-semibold"
+                                    style="font-size: 11px;">Or</span>
+                                <hr class="flex-grow-1 text-muted my-0">
+                            </div>
+                            <button type="button" onclick="continuewithgoogle()"
+                                class="btn btn-custom-google w-100 mb-3 fw-semibold d-flex align-items-center justify-content-center gap-2 googleLoginBtn">
+                                <i class="bi bi-google"></i> Continue with
+                                Google
+                            </button>
+
+                            <p class="text-center small text-muted">
+                                Already have an account? <a href="#"
+                                    id="showLogin"
+                                    class="text-decoration-none fw-bold">Log
+                                    In</a>
+                            </p>
+                        </form>
                     </div>
-
-                    <!-- Login Form -->
-                    <form id="loginForm">
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Email Address</label>
-                            <input type="email" id="loginEmail" class="form-control" placeholder="name@example.com" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Password</label>
-                            <input type="password" id="loginPassword" class="form-control" placeholder="••••••••" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100 mb-3 fw-semibold">Log In</button>
-                        <p class="text-center small text-muted">
-                            Don't have an account? <a href="#" id="showSignup" class="text-decoration-none fw-bold">Sign Up</a>
-                        </p>
-                    </form>
-
-                    <!-- Signup Form -->
-                    <form id="signupForm" class="d-none">
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Full Name</label>
-                            <input type="text" id="signupName" class="form-control" placeholder="John Doe" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Email Address</label>
-                            <input type="email" id="signupEmail" class="form-control" placeholder="name@example.com" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label text-secondary small fw-semibold">Password</label>
-                            <input type="password" id="signupPassword" class="form-control" placeholder="Create strong password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100 mb-3 fw-semibold">Sign Up & Log In</button>
-                        <p class="text-center small text-muted">
-                            Already have an account? <a href="#" id="showLogin" class="text-decoration-none fw-bold">Log In</a>
-                        </p>
-                    </form>
                 </div>
             </div>
-        </div>
-    </section>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="app.js"></script>
-</body>
+        </section>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="app.js"></script>
+    </body>
 </html>
