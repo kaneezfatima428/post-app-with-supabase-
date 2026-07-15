@@ -122,7 +122,8 @@ async function continuewithgoogle() {
     const { data, error } = await supabase.auth.signInWithOAuth({
   provider: 'google',
   options: {
-    redirectTo: 'http://127.0.0.1:5500/dash.html'
+//     redirectTo: 'http://127.0.0.1:5500/dash.html'
+    redirectTo: 'https://kaneezfatima428.github.io/post-app-with-supabase-/dash.html'
   }
 })
 }
