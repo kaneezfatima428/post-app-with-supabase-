@@ -1,4 +1,4 @@
-// 
+
 var supabase = window.supabase.createClient('https://dnlqybhhohivumfgnxdz.supabase.co', 'sb_publishable_osMm75NYS71XczWSpZIYOQ_MCrF_1h2');
 
 var themeToggle = document.getElementById('themeToggle');

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - Premium Console</title>
+    <link rel="stylesheet" href="admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" />
+  </head>
+  <body class="dark-theme">
+
+    <div class="container-wrapper">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <i class="fa-solid fa-user-shield"></i>
+          <span>Admin Hub</span>
+        </div>
+
+        <ul class="nav-links">
+          <li class="nav-item active" onclick="switchTab('overview', this)">
+            <i class="fa-solid fa-chart-pie"></i> Dashboard
+          </li>
+          <li class="nav-item" onclick="switchTab('posts', this)">
+            <i class="fa-solid fa-layer-group"></i> Manage Posts
+          </li>
+          <li class="nav-item" onclick="switchTab('users', this)">
+            <i class="fa-solid fa-users"></i> Manage Users
+          </li>
+          <li class="nav-item logout-btn" onclick="logout()">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+          </li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        
+        <section id="tab-overview" class="content-section active">
+          <h1 class="page-title">System Overview</h1>
+          <p class="subtitle">Real-time statistics of your application.</p>
+
+          <div class="dashboard-cards">
+            <div class="stat-card">
+              <div class="card-icon icon-blue"><i class="fa-solid fa-users"></i></div>
+              <div class="card-data">
+                <h3>Total Registered Users</h3>
+                <p id="totalUsers">0</p>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="card-icon icon-purple"><i class="fa-solid fa-paper-plane"></i></div>
+              <div class="card-data">
+                <h3>Total Public Posts</h3>
+                <p id="totalPosts">0</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="system-status-card">
+            <h3><i class="fa-solid fa-circle-check text-success"></i> Central Core Status</h3>
+            <p>Supabase connection is active. Integration sync running smoothly.</p>
+          </div>
+        </section>
+
+        <section id="tab-posts" class="content-section">
+          <h1 class="page-title">Manage Global Posts</h1>
+          <p class="subtitle">Monitor, view individual user assets, or delete posts instantly.</p>
+          <div id="postsContainer" class="posts-admin-grid">
+            </div>
+        </section>
+
+        <section id="tab-users" class="content-section">
+          <h1 class="page-title">User Management Directory</h1>
+          <p class="subtitle">Full database directory of application users.</p>
+          
+          <div class="table-wrapper">
+            <table class="modern-table">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Identity/Name</th>
+                  <th>Email Address</th>
+                  <th>Phone</th>
+                  <th>Action Operations</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody">
+                </tbody>
+            </table>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="adminPannel.js"></script>
+  </body>
+</html>
